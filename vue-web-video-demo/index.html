@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>goods list</h3>
+        <ul>
+            <li v-for='good in goods'>
+                <input v-model.number='good.quantity' />{{good.name}}
+                <span style="font-weight: bold;color: red;" v-if='good.quantity === 0'>Out of Stock</span>
+                <button v-on:click='good.quantity+=1'>+1</button>
+            </li>
+        </ul>
+        <p>goods total quantity:{{totalQuantity}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            // 这是一切的数据源，只要数据的变化就引起一切相关的变化
+            goods: [],
+            name: 'lofayo'
+        },
+        computed: {
+            totalQuantity: function() {
+                return this.goods.reduce((sum, item) => sum + item.quantity, 0)
+            }
+        },
+        // 传入函数的值经过改造了，却返回不出去
+        methods: {
+            add: function(e, n) {
+                console.log(e, n)
+
+            }
+        },
+        // 实例被创建后的生命周期钩子
+        created: function() {
+            console.log('you created!!!')
+            console.log(this.name)
+            fetch('data.json')
+                .then(res => res.json())
+                .then(resJson => {
+                    this.goods = resJson
+                })
+        }
+    })
+    </script>
+</body>
+
+</html>
