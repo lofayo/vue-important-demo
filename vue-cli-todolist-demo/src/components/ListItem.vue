@@ -1,11 +1,14 @@
 <template>
-  <li class="item">{{content}}/{{index}} <button @click='deleteItem'>delete</button></li>  
+  <li class="item">{{content}}/{{index}} 
+    <button @click='deleteItem'>delete</button>
+  </li>  
 </template>
 
 <script>
   // 每个组件都是个vue实例，所以下面导出就是个配置vue选项的vue实例
 export default {
-  // 1、接收来自父组件的自定义属性，可以直接在template直接插值{{content}}、也可以组件方法里this.index引用
+  // 1、接收来自父组件的自定义属性，可以直接在template直接插值{{content}}、
+  //也可以组件方法里this.index引用
   props:['content','index'],
   methods:{
     deleteItem() {

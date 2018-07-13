@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app1">
     <div>
       <input class="item" type="text" v-model='inputValue'>
       <button @click='addItem'>add</button>
@@ -26,6 +26,9 @@ export default {
 // 2、注册组件
   components:{
     'list-item':ListItem1
+  },
+  created() {
+    console.log(this)
   },
   data() {
     return {
